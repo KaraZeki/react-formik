@@ -1,7 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Link } from "react-router-dom";
 
 export const GeneralForm = () => {
+  const colors = ["Sarı", "Mavi", "Yeşil", "Kırmız", "Mor"];
   return (
     <div>
       <h1>Kayıt Ol</h1>
@@ -26,8 +28,7 @@ export const GeneralForm = () => {
           }
           if (!values.password) {
             errors.password = "Zorunlu alan";
-          } 
-          else if (values.password != values.confirmPassword) {
+          } else if (values.password != values.confirmPassword) {
             errors.confirmPassword = "Şifreler eşleşmiyor kardeş";
           }
           if (!values.age) {
@@ -37,11 +38,12 @@ export const GeneralForm = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
-          }, 400);
+            resetForm();
+          }, 5000);
         }}
       >
         {({ isSubmitting }) => (
@@ -54,13 +56,38 @@ export const GeneralForm = () => {
             />
             <Field type="text" name="age" placeholder="yaş giriniz" />
             <ErrorMessage className="errormessage" name="age" component="div" />
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-            <Field type="password" name="confirmPassword" />
-            <ErrorMessage className="errormessage" name="confirmPassword" component="div" />
+            <Field
+              type="password"
+              name="password"
+              placeholder="Şifre giriniz"
+            />
+            <ErrorMessage
+              className="errormessage"
+              name="password"
+              component="div"
+            />
+            <Field
+              type="password"
+              name="confirmPassword"
+              placeholder="Tekrar şifre giriniz"
+            />
+            <ErrorMessage
+              className="errormessage"
+              name="confirmPassword"
+              component="div"
+            />
+
+            <Field name="colors" as="select" className="my-select">
+              {colors.map((color) => {
+                return <option value={color}>{color}</option>;
+              })}
+            </Field>
             <button type="submit" disabled={isSubmitting}>
               Kaydet
             </button>
+            <Link className="form-link" to="/portal">
+              Portala Git
+            </Link>
           </Form>
         )}
       </Formik>

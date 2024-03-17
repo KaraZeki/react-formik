@@ -30,10 +30,13 @@ input {
 }
 
 input::placeholder {
-  color: lightgray;
+  color: rgb(92, 84, 84);
 }
 input:focus {
   border-color: lightblue;
+}
+input:hover{
+  box-shadow:0px 0px 3px 3px rgb(173, 79, 79);
 }
 
 button {
@@ -48,7 +51,31 @@ button {
   border-radius: 20px;
   border: none;
 }
-
+button:hover{
+  box-shadow:0px 0px 3px 3px rgb(173, 79, 79);
+}
+button:active {
+  background-color: red;
+}
 .errormessage{
   color: red;
+}
+
+.my-select{
+  width: 103%;
+  padding: 8px 7px;
+  font-size: 16px;
+  border: 2px solid #4a5568;
+  background-color: #2d3748;
+  color: white;
+  margin: 5px 0px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.my-select:hover{
+  box-shadow:0px 0px 3px 3px rgb(173, 79, 79);
+}
+.form-link{
+  color: white;
 }
